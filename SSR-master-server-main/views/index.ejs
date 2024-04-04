@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Bienvenidos a <%= title %></p>
+    <p>En <a href="/logs" target="_blank">/logs</a> encontramos todos los archivos de log ordenados por fecha de creación</p>
+    <p>En el csv aparecerá cada entrada insertada en una línea, con su identificador, tiempo de inserción (en formato timestamp), 
+	y valores medidos.
+    	 </p>
+    <p>Para insertar un conjunto de datos debemos realizar una petición HTTP GET hacia el punto /record, con los siguientes parámetros:
+    	<ul>
+    		<li><strong>id_nodo</strong> identificador del sistema arduino que genera los datos</li>
+    		<li><strong>temperatura</strong> medida del sensor de temperatura (valor numérico)</li>
+    		<li><strong>humedad</strong> medida del sensor de humedad (valor numérico)</li>
+			<li><strong>co2</strong> medida del sensor de dióxido de carbono (valor numérico)</li>
+			<li><strong>volatiles</strong> medida del sensor de medición de partículas volátiles (valor numérico)</li>
+    	</ul>
+
+    			<p>A continuación presentamos varios ejemplos de inserción: </p>
+				<ul>
+    		<li><a href="/record?id_nodo=nodoPrueba1&temperatura=24.5&humedad=68.2&co2=293&volatiles=112" target="_blank">/record?id_nodo=nodoPrueba1&temperatura=24.5&humedad=68.2&co2=293&volatiles=112</a> </li>
+    		<li><a href="/record?id_nodo=nodoPrueba2&temperatura=22.5&humedad=20.2&co2=73&volatiles=11" target="_blank">/record?id_nodo=nodoPrueba2&temperatura=22.5&humedad=20.2&co2=73&volatiles=11</a> </li>
+    		<li><a href="/record?id_nodo=nodoPrueba2&temperatura=32.5&humedad=97.3&co2=112&volatiles=65" target="_blank">/record?id_nodo=nodoPrueba2&temperatura=32.5&humedad=97.3&co2=112&volatiles=65</a> </li>
+    	</ul>
+				
+				</p>
+
+    			
+  </body>
+</html>
