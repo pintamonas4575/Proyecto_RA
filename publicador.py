@@ -22,7 +22,7 @@ client.on_publish = on_publish
 
 while True:
     client.publish("ETSISI/hola", "Publicador1")
-    time.sleep(5)
+    time.sleep(3)
 
 
 
