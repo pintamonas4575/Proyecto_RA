@@ -1,15 +1,36 @@
-# 💼 Proyecto_RA
-Proyecto de la asignatura "Redes Avanzadas" de la ETSISI UPM en el curso 2023-24.
+# Data-Logger
+Bienvenidos a Data-Logger
 
-# 📜 Anotaciones
-Cambiar línea de connect()
+## Instalación: Nos aseguramos de que Nodejs y Npm están instalados.
+En la carpeta de proyecto hacemos:
+```
+npm install -g nodemon
+npm install
+```
+<!-- En la carpeta public, creamos una carpeta de nombre: logs -->
 
-Añadir en el .conf: _"listener 1883 10.100.0.104"_
+## Ejecución:
+En la carpeta de proyecto hacemos:
+```
+npm start
+```
+La aplicación se ejecuta en localhost:3000
 
-# ⚖️ Licencia
-No se va a llevar a nadie a juicio.
+## Información adicional
 
-# 👤 Contacto
-Contactar con los contribuyentes de este repositorio.
+En /logs encontramos todos los archivos de log ordenados por fecha de creación
 
-* Alejandro Mendoza: [@pintamonas4575](https://github.com/pintamonas4575) 
+En el csv aparecerá cada entrada insertada en una línea, con su identificador, tiempo de inserción (en formato timestamp), temperatura, humedad, CO2, volatiles
+
+Para insertar un conjunto de datos debemos realizar una petición HTTP GET hacia el punto /record, con los siguientes parámetros:
+
+- id_nodo identificador del nodo (string)
+- temperatura (float / double)
+- humedad valores (float / double)
+- co2  (interger)
+- volatiles (interger)
+
+Un ejemplo de inserción es la siguiente 
+```
+/record?id_nodo=nodoPrueba1&temperatura=24.5&humedad=68.2&co2=293&volatiles=112
+```
