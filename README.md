@@ -1,5 +1,5 @@
 # 💼 Proyecto_RA
-Proyecto de la asignatura "Redes Avanzadas" de la ETSISI UPM.
+Proyecto de la asignatura "Redes Avanzadas" de la ETSISI UPM en el curso 2023-24.
 
 # 📜 Anotaciones
 Cambiar línea de connect()
