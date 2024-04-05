@@ -3,7 +3,8 @@ var router = express.Router();
 var mqtt = require('mqtt'); //Importa la biblioteca MQTT, que permite la comunicación con un servidor MQTT.
 
 // Conexión al broker MQTT
-var client = mqtt.connect('mqtt://10.100.0.104:1883'); // Reemplaza 'localhost' con la dirección del broker MQTT
+// var client = mqtt.connect('mqtt://10.100.0.104:1883'); // Reemplaza 'localhost' con la dirección del broker MQTT
+var client = mqtt.connect('mqtt://10.100.0.104');
 
 client.on('connect', function () {
     console.log('Connected to MQTT broker');
