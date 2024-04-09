@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mqtt = require('mqtt');
-var client = mqtt.connect('mqtt://10.100.0.104');
+var client = mqtt.connect('mqtt://10.100.0.104:1883');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
