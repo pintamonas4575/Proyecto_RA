@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://wadl.dev.java.net/2009/02 wadl.xsd" xmlns="http://wadl.dev.java.net/2009/02">
+  <resources base="http://localhost:3001">
+    <resource path="/">
+      <method name="GET" id="get">
+        <response>
+          <representation mediaType="text/html"/>
+        </response>
+      </method>
+      <method name="POST" id="post">
+        <request>
+          <representation mediaType="application/json"/>
+        </request>
+        <response>
+          <representation mediaType="text/plain"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/record">
+      <method name="GET" id="get-record">
+        <response>
+          <representation mediaType="text/html"/>
+        </response>
+      </method>
+      <method name="POST" id="post-record">
+        <request>
+          <representation mediaType="application/json"/>
+        </request>
+        <response>
+          <representation mediaType="text/plain"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

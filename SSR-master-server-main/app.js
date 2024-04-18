@@ -4,12 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var serveIndex = require('serve-index');
-//var httpProxy = require('http-proxy-middleware');
 
 var http = require('http');
 var http_proxy = require('http-proxy');
 
-//var indexRouter = require('./routes/index');
 var indexRouter = require('./routes/prueba');
 var usersRouter = require('./routes/users');
 
@@ -102,7 +100,7 @@ app.listen(3001, () => {
 });
 
 app2.listen(3002, () => {
-  console.log("Server en puerto 3002 running");
+  console.log("Server is running in port 3002");
 });
 
 module.exports = app;
