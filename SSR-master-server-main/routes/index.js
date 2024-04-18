@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var mqtt = require('mqtt');
-var client = mqtt.connect('mqtt://10.100.0.104:1883');
+
+const mqtt = require("mqtt");
+var client = mqtt.connect('10.100.0.104:1883');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,7 +18,7 @@ fs.stat(logfile_name, function(err, stat) {
         console.log('File %s exists', logfile_name);
 		let content = req.query.id_nodo+';'+now.getTime()+";"+req.query.temperatura+";"+req.query.humedad+";"+req.query.co2+";"+req.query.volatiles+"\r\n";
 		append2file(logfile_name, content);
-		
+
     } else if(err.code === 'ENOENT') {
         // file does not exist
 	let content ='id_nodo; timestamp; temperatura; humedad; CO2; volatiles\r\n'+req.query.id_nodo+';'+now.getTime()+";"+req.query.temperatura+";"+req.query.humedad+";"+req.query.co2+";"+req.query.volatiles+"\r\n";

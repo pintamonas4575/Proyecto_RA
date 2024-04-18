@@ -13,7 +13,7 @@ def on_publish(client, userdata, mid, reasoncode=None, properties=None):
 # client_id = f'python-mqtt-{random.randint(0, 1000)}'
 client = mqtt.Client()
 
-client.connect("10.100.0.104", 1883, 60)
+client.connect("localhost", 1883, 60)
 
 client.on_connect = on_connect
 client.on_publish = on_publish

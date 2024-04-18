@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var mqtt = require('mqtt'); //Importa la biblioteca MQTT, que permite la comunicación con un servidor MQTT.
 
-// Conexión al broker MQTT
-// var client = mqtt.connect('mqtt://10.100.0.104:1883'); // Reemplaza 'localhost' con la dirección del broker MQTT
-var client = mqtt.connect('mqtt://10.100.0.104');
+var mqtt = require("mqtt");
+//var client = mqtt.connect('mqtt://10.100.0.104');
+var client = mqtt.connect('mqtt://localhost');
 
 client.on('connect', function () {
     console.log('Connected to MQTT broker');
@@ -21,10 +20,14 @@ router.get('/', function(req, res, next) {
 
 router.get('/record', function(req, res, next) {
     var now = new Date();
-    var topic = "Temperatura"; // Define el tema MQTT utilizando el ID del nodo
+    var topic = "Sensores";
     var payload = {
+        ID_sensor: req.query.id_nodo,
         timestamp: now.getTime(),
-        temperatura: req.query.temperatura
+        temperatura: req.query.temperatura,
+        humedad: req.query.humedad,
+	co2: req.query.co2,
+	volatiles: req.query.volatiles
     };
 
     client.publish(topic, JSON.stringify(payload), function (error) {
@@ -37,5 +40,8 @@ router.get('/record', function(req, res, next) {
         }
     });
 });
+
+//router.post('/record', function(req, res, next){
+
 
 module.exports = router;

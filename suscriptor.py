@@ -2,11 +2,41 @@
 import paho.mqtt.client as mqtt
 import random
 import json
+import mysql.connector
 
-# V1 también para ejercicio 5
+mysql_host = "localhost"
+mysql_user = "root"
+mysql_password = "root1234"
+mysql_database = "proyecto_RA"
+
+
 def on_message(client, userdata, msg):
     print("Recibido: " + msg.topic+" "+str(msg.payload))
-# V2D
+    db_connection = mysql.connector.connect(
+	host = mysql_host,
+	user = mysql_user,
+	password = mysql_password,
+	database = mysql_database)
+
+    payload_json = json.loads(msg.payload.decode("utf-8"))
+    id_sensor = payload_json["ID_sensor"]
+    timestamp = payload_json["timestamp"]
+    temperatura = payload_json["temperatura"]
+    humedad = payload_json["humedad"]
+    co2 = payload_json["co2"]
+    volatiles = payload_json["volatiles"]
+
+    #------------------------------------------------
+    query = f"INSERT INTO megatabla VALUES (%s, %s, %s, %s, %s, %s)"
+
+    cursor = db_connection.cursor()
+    cursor.execute(query, (id_sensor, timestamp, temperatura, humedad, co2, volatiles))
+    db_connection.commit()
+
+    cursor.close()
+    db_connection.close()
+
+
 """def on_message(client, userdata, msg):
     print("Recibido: " + msg.topic+" "+str(msg.payload))
     # topic = msg.topic
@@ -21,21 +51,16 @@ def on_message(client, userdata, msg):
 def on_connect(client, userdata, flags, rc, properties=None):  # properties=None
     print("Conectado con mqtt " + str(rc))
 
-# client_id = f'python-mqtt-{random.randint(0, 1000)}'
-client = mqtt.Client(
-    # client_id=client_id,
-    # clean_session=True,
-    # userdata=None,
-    # protocol=MQTTv311,
-    # transport='tcp'
-)
-client.connect("test.mosquitto.org", 1883, 60, "")
+
+client = mqtt.Client()
+
+client.connect("localhost", 1883, 60)
 
 client.on_connect = on_connect
 client.on_message = on_message
 
 
-client.subscribe("ETSISI/hola")
+client.subscribe("Sensores")
 
 
 client.loop_forever()
