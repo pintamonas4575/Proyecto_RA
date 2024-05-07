@@ -2,6 +2,7 @@
 import paho.mqtt.client as mqtt
 import random
 import json
+import io
 import mysql.connector
 from datetime import datetime
 
