@@ -10,7 +10,6 @@ def on_connect(client, userdata, flags, rc, properties=None):
 def on_publish(client, userdata, mid, reasoncode=None, properties=None):
     print("Mensaje publicado")
 
-# client_id = f'python-mqtt-{random.randint(0, 1000)}'
 client = mqtt.Client()
 
 client.connect("localhost", 1883, 60)
@@ -20,9 +19,39 @@ client.on_publish = on_publish
 
 # --------------------------------------------
 
+# Valores de ejemplo
+id_sensor = "sensor123"
+timestamp = int(time.time())
+temperatura = 25.5
+humedad = 60
+co2 = 123
+volatiles = 50
+
+# Publicación del mensaje MQTT en el topic "Sensores"
+payload = {
+    "ID_sensor": id_sensor,
+    "timestamp": timestamp,
+    "temperatura": temperatura,
+    "humedad": humedad,
+    "co2": co2,
+    "volatiles": volatiles
+}
+
+
 while True:
-    client.publish("ETSISI/hola", "Publicador1")
-    time.sleep(3)
+
+   #co2 = random.uniform(120.0, 200.0)
+   payload = {
+       "ID_sensor": id_sensor,
+       "timestamp": timestamp,
+       "temperatura": temperatura,
+       "humedad": humedad,
+       "co2": co2,
+       "volatiles": volatiles
+   }
+
+   client.publish("Sensores", json.dumps(payload))
+   time.sleep(2)
 
 
 

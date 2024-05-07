@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://wadl.dev.java.net/2009/02 wadl.xsd" xmlns="http://wadl.dev.java.net/2009/02">
-  <resources base="http://localhost:3001">
+<application xmlns="http://wadl.dev.java.net/2009/02">
+  <resources base="http://localhost:puerto">
     <resource path="/">
-      <method name="GET" id="get">
+      <method name="GET">
+        <request>
+          <representation mediaType="text/html"/>
+        </request>
         <response>
           <representation mediaType="text/html"/>
         </response>
       </method>
-      <method name="POST" id="post">
+    </resource>
+    <resource path="/record">
+      <method name="GET">
+        <request>
+          <param name="id_nodo" style="query" type="xs:string"/>
+          <param name="temperatura" style="query" type="xs:string"/>
+          <param name="humedad" style="query" type="xs:string"/>
+          <param name="co2" style="query" type="xs:string"/>
+          <param name="volatiles" style="query" type="xs:string"/>
+        </request>
+        <response>
+          <representation mediaType="text/plain"/>
+        </response>
+      </method>
+      <method name="POST">
         <request>
           <representation mediaType="application/json"/>
         </request>
@@ -16,18 +33,10 @@
         </response>
       </method>
     </resource>
-    <resource path="/record">
-      <method name="GET" id="get-record">
+    <resource path="/wadl">
+      <method name="GET">
         <response>
-          <representation mediaType="text/html"/>
-        </response>
-      </method>
-      <method name="POST" id="post-record">
-        <request>
-          <representation mediaType="application/json"/>
-        </request>
-        <response>
-          <representation mediaType="text/plain"/>
+          <representation mediaType="application/xml"/>
         </response>
       </method>
     </resource>

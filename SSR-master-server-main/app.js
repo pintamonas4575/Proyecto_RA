@@ -34,6 +34,7 @@ require('http').createServer(function(req, res){
 var app = express();
 var app2 = express();
 
+//--------------------------------------------------------------------------------
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -63,6 +64,8 @@ app2.use('/users', usersRouter);
 app2.use('/logs', serveIndex(path.join(__dirname, 'public/logs'))); // shows you the file list
 app2.use('/logs', express.static(path.join(__dirname, 'public/logs'))); // serve the actual files
 
+//--------------------------------------------------------------------------------
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -87,7 +90,7 @@ app2.use(function(req, res, next) {
 app2.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app2.get('env') === 'development' ? err : {};
+  res.locals.error = req.app2.get('env') === 'development' ? err : {}; //aquí da error
 
   // render the error page
   res.status(err.status || 500);
@@ -95,6 +98,7 @@ app2.use(function(err, req, res, next) {
 });
 
 
+//--------------------------------------------------------------------------------
 app.listen(3001, () => {
   console.log(`Server is running in port 3001`);
 });
@@ -103,5 +107,7 @@ app2.listen(3002, () => {
   console.log("Server is running in port 3002");
 });
 
+
+//--------------------------------------------------------------------------------
 module.exports = app;
 module.exports = app2;

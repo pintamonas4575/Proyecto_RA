@@ -3,6 +3,7 @@ import paho.mqtt.client as mqtt
 import random
 import json
 import mysql.connector
+from datetime import datetime
 
 mysql_host = "localhost"
 mysql_user = "root"
@@ -25,6 +26,8 @@ def on_message(client, userdata, msg):
     humedad = payload_json["humedad"]
     co2 = payload_json["co2"]
     volatiles = payload_json["volatiles"]
+
+    timestamp = datetime.fromtimestamp(timestamp)
 
     #------------------------------------------------
     query = f"INSERT INTO megatabla VALUES (%s, %s, %s, %s, %s, %s)"
