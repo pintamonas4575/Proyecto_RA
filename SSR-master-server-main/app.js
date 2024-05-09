@@ -100,7 +100,7 @@ app2.use(function(err, req, res, next) {
 
 //--------------------------------------------------------------------------------
 app.listen(3001, () => {
-  console.log(`Server is running in port 3001`);
+  console.log('Server is running in port 3001');
 });
 
 app2.listen(3002, () => {

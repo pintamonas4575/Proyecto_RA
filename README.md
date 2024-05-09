@@ -11,6 +11,10 @@ Hacer _npm install_ para:
 * paho-mqtt
 * http-errors
 
+Para entrar en MySQL:
+1. Comando: mysql -u root -p proyecto_RA
+2. Password: root1234
+
 # ⚖️ Licencia
 No se va a llevar a nadie a juicio.
 
