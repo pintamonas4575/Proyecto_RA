@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var express2 = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -32,7 +33,7 @@ require('http').createServer(function(req, res){
 }).listen(8080);
 
 var app = express();
-var app2 = express();
+var app2 = express2();
 
 //--------------------------------------------------------------------------------
 // view engine setup

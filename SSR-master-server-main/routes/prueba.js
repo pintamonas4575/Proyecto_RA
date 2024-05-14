@@ -7,7 +7,7 @@ var fs = require('fs');
 
 var TokenBucket = require('./TokenBucket'); // Importa la clase TokenBucket
 
-// Crea un nuevo cubo de tokens con una capacidad de 10 y 1 token agregado por segundo
+// Crea un nuevo cubo de tokens con una capacidad de 1000 y 10 token agregado por segundo
 const tokenBucket = new TokenBucket(1000, 10);
 
 //---------------------------------------------------------
