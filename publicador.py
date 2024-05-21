@@ -51,7 +51,7 @@ while True:
    }
 
    client.publish("Sensores", json.dumps(payload))
-   time.sleep(2)
+   #time.sleep(2)
 
 
 

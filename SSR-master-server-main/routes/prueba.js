@@ -6,8 +6,7 @@ var client = mqtt.connect('mqtt://localhost');
 var fs = require('fs');
 
 var TokenBucket = require('./TokenBucket'); // Importa la clase TokenBucket
-
-// Crea un nuevo cubo de tokens con una capacidad de 1000 y 10 token agregado por segundo
+// Crea un nuevo cubo de tokens con una capacidad de 1000 y 10 tokens agregado por segundo
 const tokenBucket = new TokenBucket(1000, 10);
 
 //---------------------------------------------------------
@@ -68,11 +67,11 @@ router.post('/record', function(req, res, next) {
         return;
     }
     var now = new Date();
-    var now_aux = Math.trunc(now / 1000);
+    var now_aux = Math.floor(now.getTime() / 1000);
     var topic = "Sensores";
     var payload = {
         ID_sensor: req.body.id_nodo,
-        timestamp: now_aux.getTime(),
+        timestamp: now_aux,
         temperatura: req.body.temperatura,
         humedad: req.body.humedad,
         co2: req.body.co2,

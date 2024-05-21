@@ -1,6 +1,5 @@
 var createError = require('http-errors');
 var express = require('express');
-var express2 = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -8,6 +7,8 @@ var serveIndex = require('serve-index');
 
 var http = require('http');
 var http_proxy = require('http-proxy');
+
+const ipfilter = require('express-ipfilter').IpFilter; //Lista negra
 
 var indexRouter = require('./routes/prueba');
 var usersRouter = require('./routes/users');
@@ -20,6 +21,9 @@ var servidores = [
 
 var balanceador = http_proxy.createProxy();
 
+const ips = ['10.0.3.21'];
+
+//------------------------------------------------------
 require('http').createServer(function(req, res){
   var servidor = servidores[contador_servidores];
 
@@ -33,7 +37,7 @@ require('http').createServer(function(req, res){
 }).listen(8080);
 
 var app = express();
-var app2 = express2();
+var app2 = express();
 
 //--------------------------------------------------------------------------------
 // view engine setup
@@ -98,12 +102,13 @@ app2.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
 //--------------------------------------------------------------------------------
+app.use(ipfilter(ips));
 app.listen(3001, () => {
   console.log('Server is running in port 3001');
 });
 
+app2.use(ipfilter(ips));
 app2.listen(3002, () => {
   console.log("Server is running in port 3002");
 });
